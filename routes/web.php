@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Artisan;
 
 /*
@@ -23,4 +23,9 @@ Route::get('/', function () {
 Route::get('/migrate', function () {
     Artisan::call('migrate', ['--force' => true]);
     return 'Migration completed!';
+});
+
+Route::get('/check-log', function () {
+    $log = File::get(storage_path('logs/laravel.log'));
+    return response("<pre>$log</pre>");
 });
