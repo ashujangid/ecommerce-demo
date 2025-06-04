@@ -3,6 +3,8 @@ import { useState } from "react";
 import styles from '../css/Checkout.module.css';
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+const API_BASE_URL = process.env.API_BASE_URL;
+
 
 const Checkout = () => {
     const location = useLocation();
@@ -100,7 +102,7 @@ const Checkout = () => {
         }
 
         try {
-            const response = await axios.post("http://127.0.0.1:8000/api/checkout", {
+            const response = await axios.post(API_BASE_URL+"api/checkout", {
                 product: {
                     title: orderData.product.title,
                     price: orderData.product.price,

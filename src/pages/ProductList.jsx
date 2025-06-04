@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "../css/ProductList.module.css";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
@@ -9,7 +11,7 @@ const ProductList = () => {
 
     useEffect(() => {
         axios
-            .get("http://127.0.0.1:8000/api/products")
+            .get(`${API_BASE_URL}api/products`)
             .then((res) => setProducts(res.data))
             .catch((err) => console.error("Error fetching products:", err));
     }, []);
